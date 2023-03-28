@@ -70,7 +70,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista já possuir elementos
+	// se a lista jÃ¡ possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -129,13 +129,21 @@ void inserirElemento()
 	{
 		primeiro = novo;
 	}
-	else
-	{
+	else if (novo->valor < primeiro->valor) {
+		NO* aux = primeiro;
+		primeiro = novo;
+		primeiro->prox = aux;
+	}
+	else {
 		// procura o final da lista
 		NO* aux = primeiro;
 		while (aux->prox != NULL) {
+			if (aux-> prox->valor > novo->valor) {
+				break;
+			}
 			aux = aux->prox;
 		}
+		novo->prox = aux->prox;
 		aux->prox = novo;
 	}
 }
