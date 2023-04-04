@@ -150,12 +150,63 @@ void inserirElemento()
 
 void excluirElemento()
 {
-
+	
+		NO* deletar = (NO*)malloc(sizeof(NO));
+		cout << "Digite o numero para excluir:" << endl;
+		cin >> deletar->valor;
+		deletar->prox = NULL;
+		if (primeiro == NULL) {
+			cout << "Lista vazia";
+		}
+		else if (deletar->valor == primeiro->valor) {
+			primeiro = primeiro->prox; 
+			free(deletar); 
+		}
+		else { 
+			NO* aux = primeiro;
+			while (aux->prox != NULL) {
+				if (aux->prox->valor == deletar->valor) {
+					aux->prox = aux->prox->prox;
+					free(deletar);
+					break;
+				}
+				aux = aux->prox;
+			}
+		}
+	
 }
 
 void buscarElemento()
 {
+	NO* busca = (NO*)malloc(sizeof(NO)); 
+	
+	cout << "Numero a ser buscado: " << endl;
+	
+	cin >> busca->valor;
+	
+	busca->prox = NULL;
 
+	if (primeiro == NULL) { 
+		cout << "Lista vazia!" << endl;
+	}
+	else {
+		NO* aux = primeiro;
+		int cont = 0;
+		while (aux != NULL) {
+			if (aux->valor == busca->valor) { 
+				cont++;
+			}
+			aux = aux->prox;
+		}
+		if (cont > 0) { 
+			cout << "Numero encontrado " << cont << endl;
+		}
+		else {
+			cout << "Numero nao encontrado." << endl;
+		}
+	}
+
+	free(busca);
 }
 
 
